@@ -1,0 +1,119 @@
+{
+  "app": {
+    "name": "Steam Game Picker",
+    "description": "Sign in with Steam and pick a random game from your library to play.",
+    "footer": "Not affiliated with Valve Corporation. Data provided by the Steam Web API.",
+    "loading": "Loading…",
+    "loadErrorTitle": "Couldn't load",
+    "loadErrorText": "The server didn't respond. Check your connection and reload the page.",
+    "reload": "Reload"
+  },
+  "nav": {
+    "library": "Library",
+    "drawn": "Picked games",
+    "logout": "Sign out",
+    "language": "Language"
+  },
+  "login": {
+    "title": "Don't know what to play?",
+    "text": "Sign in with your Steam account. We read your library and pick a game for you.",
+    "failed": "Couldn't confirm your Steam sign-in. Please try again.",
+    "button": "Sign in with Steam",
+    "note": "Sign-in happens on the Steam website. Your password never passes through here; we only receive your public SteamID."
+  },
+  "library": {
+    "loading": "Loading your library…",
+    "private": {
+      "title": "Your library is private",
+      "text": "Steam only shows your games if your game details are public. On Steam, open <b>Profile → Edit Profile → Privacy Settings</b> and set <b>Game details</b> to <b>Public</b>.",
+      "openSettings": "Open privacy settings",
+      "retry": "I've made it public, try again"
+    },
+    "steamDown": {
+      "title": "Steam didn't respond",
+      "text": "We couldn't fetch your library right now. This usually clears up in a few minutes.",
+      "retry": "Try again"
+    },
+    "empty": {
+      "title": "No games found",
+      "text": "Your account has no games in its library. Family Sharing games don't show up through the API."
+    },
+    "collectionLabel": "Collection",
+    "allGames": "All games",
+    "optionWithCount": "{name} ({count})",
+    "search": "Search your library",
+    "listHeading": "{name} ({count})",
+    "listHeadingFiltered": "{name} · filtered ({count})",
+    "importCollections": "+ Import Steam collections",
+    "updateCollections": "Update Steam collections",
+    "imported": {
+      "one": "{count} collection imported.",
+      "other": "{count} collections imported."
+    },
+    "dynamicSkipped": {
+      "one": "{count} dynamic collection skipped.",
+      "other": "{count} dynamic collections skipped."
+    },
+    "roll": "Pick a game",
+    "rolling": "Picking…",
+    "play": "▶ Play",
+    "playtime": "Playtime",
+    "lastSession": "Last session",
+    "drawFrom": "Pick from",
+    "noMatch": "No game in your library matches this filter.",
+    "noMatchInCollection": "No game in the \"{name}\" collection matches this filter.",
+    "lastTwoWeeks": "{time} in the last 2 weeks",
+    "store": "View in store"
+  },
+  "limits": {
+    "any": "any playtime",
+    "0": "never played",
+    "2": "under 2 h",
+    "10": "under 10 h"
+  },
+  "collections": {
+    "favorite": "Favorites",
+    "hidden": "Hidden"
+  },
+  "import": {
+    "title": "Import Steam collections",
+    "intro": "Steam doesn't expose collections through its API, but the client keeps a copy on your computer. Upload that file and we'll read your collections right here in the browser. Nothing is sent to the server.",
+    "openFolder": "Open this folder",
+    "system": "System",
+    "copy": "Copy",
+    "copied": "Copied",
+    "windowsHint": "If Steam was installed somewhere else, look for the Steam\\userdata folder on that drive.",
+    "chooseStep": "Choose the <code>{file}</code> file",
+    "chooseFile": "Choose file",
+    "dynamicNote": "Dynamic collections (created from filters) don't store their list of games, so they aren't imported.",
+    "remove": "Remove imported collections",
+    "close": "Close",
+    "errors": {
+      "invalidJson": "This file isn't valid JSON. Make sure you chose {file}.",
+      "noCollections": "No collections found. Make sure the file is the {file} from the right folder.",
+      "unreadable": "Couldn't read the file."
+    }
+  },
+  "history": {
+    "title": "Picked games",
+    "summary": {
+      "one": "{count} pick this session. The list is cleared when you sign out.",
+      "other": "{count} picks this session. The list is cleared when you sign out."
+    },
+    "clear": "Clear list",
+    "emptyTitle": "No games picked yet",
+    "emptyText": "Games you pick show up here until you sign out.",
+    "goToLibrary": "Go to library",
+    "today": "Today at {time}",
+    "onDate": "{date} at {time}",
+    "from": "from {source}",
+    "store": "Store"
+  },
+  "format": {
+    "neverPlayed": "Never played",
+    "minutes": "{value} min",
+    "hours": "{value} h",
+    "never": "Never",
+    "today": "Today"
+  }
+}

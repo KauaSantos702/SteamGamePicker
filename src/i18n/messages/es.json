@@ -1,0 +1,119 @@
+{
+  "app": {
+    "name": "Sorteador Steam",
+    "description": "Inicia sesión con Steam y sortea un juego de tu biblioteca para jugar.",
+    "footer": "No afiliado a Valve Corporation. Datos proporcionados por la Steam Web API.",
+    "loading": "Cargando…",
+    "loadErrorTitle": "No se pudo cargar",
+    "loadErrorText": "El servidor no respondió. Revisa tu conexión y recarga la página.",
+    "reload": "Recargar"
+  },
+  "nav": {
+    "library": "Biblioteca",
+    "drawn": "Juegos sorteados",
+    "logout": "Cerrar sesión",
+    "language": "Idioma"
+  },
+  "login": {
+    "title": "¿No sabes qué jugar?",
+    "text": "Inicia sesión con tu cuenta de Steam. Leemos tu biblioteca y sorteamos un juego para ti.",
+    "failed": "No se pudo confirmar el inicio de sesión con Steam. Inténtalo de nuevo.",
+    "button": "Iniciar sesión con Steam",
+    "note": "El inicio de sesión se hace en el sitio de Steam. Tu contraseña nunca pasa por aquí; solo recibimos tu SteamID público."
+  },
+  "library": {
+    "loading": "Cargando tu biblioteca…",
+    "private": {
+      "title": "Tu biblioteca es privada",
+      "text": "Steam solo muestra tus juegos si los detalles de juego son públicos. En Steam, abre <b>Perfil → Editar perfil → Configuración de privacidad</b> y cambia <b>Detalles de juegos</b> a <b>Público</b>.",
+      "openSettings": "Abrir configuración de privacidad",
+      "retry": "Ya la hice pública, intentar de nuevo"
+    },
+    "steamDown": {
+      "title": "Steam no respondió",
+      "text": "No pudimos obtener tu biblioteca ahora. Suele resolverse en unos minutos.",
+      "retry": "Intentar de nuevo"
+    },
+    "empty": {
+      "title": "No se encontraron juegos",
+      "text": "Tu cuenta no tiene juegos en la biblioteca. Los juegos del Préstamo familiar no aparecen en la API."
+    },
+    "collectionLabel": "Colección",
+    "allGames": "Todos los juegos",
+    "optionWithCount": "{name} ({count})",
+    "search": "Buscar en la biblioteca",
+    "listHeading": "{name} ({count})",
+    "listHeadingFiltered": "{name} · filtrados ({count})",
+    "importCollections": "+ Importar colecciones de Steam",
+    "updateCollections": "Actualizar colecciones de Steam",
+    "imported": {
+      "one": "{count} colección importada.",
+      "other": "{count} colecciones importadas."
+    },
+    "dynamicSkipped": {
+      "one": "{count} dinámica ignorada.",
+      "other": "{count} dinámicas ignoradas."
+    },
+    "roll": "Sortear juego",
+    "rolling": "Sorteando…",
+    "play": "▶ Jugar",
+    "playtime": "Tiempo de juego",
+    "lastSession": "Última sesión",
+    "drawFrom": "Sortear entre",
+    "noMatch": "Ningún juego de tu biblioteca cumple este filtro.",
+    "noMatchInCollection": "Ningún juego de la colección \"{name}\" cumple este filtro.",
+    "lastTwoWeeks": "{time} en las últimas 2 semanas",
+    "store": "Ver en la tienda"
+  },
+  "limits": {
+    "any": "cualquier tiempo de juego",
+    "0": "nunca jugados",
+    "2": "menos de 2 h",
+    "10": "menos de 10 h"
+  },
+  "collections": {
+    "favorite": "Favoritos",
+    "hidden": "Ocultos"
+  },
+  "import": {
+    "title": "Importar colecciones de Steam",
+    "intro": "Steam no ofrece las colecciones por la API, pero el cliente guarda una copia en tu computadora. Sube ese archivo y leeremos las colecciones aquí mismo en el navegador. No se envía nada al servidor.",
+    "openFolder": "Abre esta carpeta",
+    "system": "Sistema",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "windowsHint": "Si Steam se instaló en otro lugar, busca la carpeta Steam\\userdata en ese disco.",
+    "chooseStep": "Elige el archivo <code>{file}</code>",
+    "chooseFile": "Elegir archivo",
+    "dynamicNote": "Las colecciones dinámicas (creadas con filtros) no guardan la lista de juegos, por eso no se importan.",
+    "remove": "Quitar colecciones importadas",
+    "close": "Cerrar",
+    "errors": {
+      "invalidJson": "Este archivo no es un JSON válido. Comprueba que elegiste {file}.",
+      "noCollections": "No se encontraron colecciones. Comprueba que el archivo sea el {file} de la carpeta correcta.",
+      "unreadable": "No se pudo leer el archivo."
+    }
+  },
+  "history": {
+    "title": "Juegos sorteados",
+    "summary": {
+      "one": "{count} sorteo en esta sesión. La lista se borra cuando cierras sesión.",
+      "other": "{count} sorteos en esta sesión. La lista se borra cuando cierras sesión."
+    },
+    "clear": "Limpiar lista",
+    "emptyTitle": "Aún no hay juegos sorteados",
+    "emptyText": "Los juegos que sortees aparecen aquí hasta que cierres sesión.",
+    "goToLibrary": "Ir a la biblioteca",
+    "today": "Hoy a las {time}",
+    "onDate": "{date} a las {time}",
+    "from": "de {source}",
+    "store": "Tienda"
+  },
+  "format": {
+    "neverPlayed": "Nunca jugado",
+    "minutes": "{value} min",
+    "hours": "{value} h",
+    "never": "Nunca",
+    "today": "Hoy"
+  }
+}

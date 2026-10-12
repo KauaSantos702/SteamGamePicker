@@ -1,0 +1,49 @@
+# dependências
+node_modules/
+
+# build do Next.js
+.next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
+
+# variáveis de ambiente (segredos). Só o modelo vai para o Git.
+.env
+.env.*
+!.env.example
+
+# Firebase: cache de deploy e logs locais
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+firestore-debug.log
+ui-debug.log
+.runtimeconfig.json
+.firebaserc
+firebase.json
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# outras plataformas de deploy
+.vercel/
+.netlify/
+
+# sistema e editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# testes
+coverage/
+
+# projeto Firebase de cada pessoa (use .firebaserc.example como modelo)
+.firebaserc
