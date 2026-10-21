@@ -34,7 +34,7 @@ const TAGS = {
 export default function Faq() {
   const { t, rich } = useI18n();
   // Answers name these buttons; reuse their labels so the text always matches the interface.
-  const vars = { removeButton: t("import.remove"), storeButton: t("library.store") };
+  const vars = { removeButton: t("import.remove"), deleteListButton: t("lists.delete"), storeButton: t("library.store") };
   return (
     <main className="faq">
       <h1>{t("faq.title")}</h1>

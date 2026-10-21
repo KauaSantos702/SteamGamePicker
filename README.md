@@ -28,6 +28,7 @@ Ter uma ferramenta pronta, em vez de colocar os jogos numa roleta manualmente, a
 - **Sorteio** com animação, sem repetir os últimos 5 jogos sorteados.
 - **Filtros de sorteio:** qualquer tempo de jogo, nunca jogados, menos de 2 h ou menos de 10 h.
 - **Coleções da Steam:** importe as coleções que você criou no cliente e sorteie dentro de uma delas.
+- **Listas de sorteio:** monte suas próprias listas marcando os jogos num modal, sem precisar importar arquivo.
 - **Jogos sorteados:** aba com o histórico dos sorteios da sessão, apagado ao sair da conta.
 - **Botão Jogar:** abre o jogo direto no cliente Steam (`steam://run/<appid>`).
 - **Idiomas:** português, inglês e espanhol, com seletor na barra superior.
@@ -47,7 +48,7 @@ Ter uma ferramenta pronta, em vez de colocar os jogos numa roleta manualmente, a
 
 - O servidor guarda apenas o seu SteamID, num cookie de sessão assinado. Não há banco de dados.
 - A lista de jogos é buscada na Steam a cada sessão e fica em cache na memória do servidor por até 1 hora.
-- Coleções importadas, o histórico de sorteios e o idioma escolhido ficam só no seu navegador (`localStorage`).
+- Listas de sorteio, coleções importadas, o histórico de sorteios e o idioma escolhido ficam só no seu navegador (`localStorage`).
   O arquivo de coleções é lido no navegador e nunca é enviado ao servidor.
 
 ### Como funciona
@@ -96,6 +97,7 @@ src/
     History.tsx           jogos sorteados
     Faq.tsx               perguntas frequentes
     CollectionsImport.tsx importação de coleções
+    ListEditor.tsx        criação e edição de listas de sorteio
     LanguageSwitcher.tsx  seletor de idioma com bandeiras
     TopBar.tsx, LogoutButton.tsx
   i18n/
@@ -106,6 +108,7 @@ src/
     steam.ts              OpenID e Steam Web API
     session.ts            configuração da sessão
     collections.ts        leitura do arquivo de coleções
+    lists.ts              listas de sorteio criadas pelo usuário (localStorage)
     history.ts            histórico de sorteios (localStorage)
     limits.ts             filtros de tempo de jogo
     format.ts             endereço do CDN de imagens da Steam
@@ -255,6 +258,7 @@ The screenshots show the interface in Portuguese; switch to English with the fla
 - **Animated pick** that won't repeat the last 5 games picked.
 - **Pick filters:** any playtime, never played, under 2 h or under 10 h.
 - **Steam collections:** import the collections you created in the client and pick from one of them.
+- **Pick lists:** build your own lists by checking games in a dialog, no file import needed.
 - **Picked games:** a tab with the session's pick history, cleared when you sign out.
 - **Play button:** launches the game straight in the Steam client (`steam://run/<appid>`).
 - **Languages:** Portuguese, English and Spanish, with a switcher in the top bar.
@@ -274,7 +278,7 @@ The screenshots show the interface in Portuguese; switch to English with the fla
 
 - The server only keeps your SteamID, in a signed session cookie. There is no database.
 - Your game list is fetched from Steam each session and cached in the server's memory for up to 1 hour.
-- Imported collections, pick history and your language choice stay in your browser (`localStorage`).
+- Pick lists, imported collections, pick history and your language choice stay in your browser (`localStorage`).
   The collections file is read in the browser and never sent to the server.
 
 ### How it works
@@ -323,6 +327,7 @@ src/
     History.tsx           picked games
     Faq.tsx               FAQ
     CollectionsImport.tsx collections import
+    ListEditor.tsx        create and edit pick lists
     LanguageSwitcher.tsx  language switcher with flags
     TopBar.tsx, LogoutButton.tsx
   i18n/
@@ -333,6 +338,7 @@ src/
     steam.ts              OpenID and Steam Web API
     session.ts            session settings
     collections.ts        collections file parser
+    lists.ts              user-made pick lists (localStorage)
     history.ts            pick history (localStorage)
     limits.ts             playtime filters
     format.ts             Steam image CDN address

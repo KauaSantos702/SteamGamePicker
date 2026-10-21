@@ -104,6 +104,37 @@ button, input, select { font: inherit; }
 .dialog-error { color: #ff7b7b; }
 .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
 
+/* hand-made draw lists */
+.list-actions { display: flex; gap: 6px; }
+.list-actions button { flex: 1; background: #2f3540; color: var(--text); border: 0; border-radius: 3px; padding: 6px 8px; cursor: pointer; font-size: 12px; }
+.list-actions button:hover { background: var(--row-on); color: var(--strong); }
+.dialog-wide { width: min(680px, calc(100% - 32px)); }
+.list-editor { display: flex; flex-direction: column; gap: 12px; }
+.list-editor h2, .list-editor p { margin: 0; }
+.field { display: flex; flex-direction: column; gap: 6px; color: var(--muted); font-size: 12px; }
+.field .search { font-size: 14px; color: var(--strong); }
+.picker-tools { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.picker-tools .search { flex: 1; min-width: 200px; width: auto; }
+.check { display: flex; align-items: center; gap: 6px; color: var(--muted); cursor: pointer; white-space: nowrap; }
+.check input, .picker input { accent-color: var(--blue); margin: 0; }
+.picker-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; color: #a4d007; font-size: 12px; }
+.picker-head span:last-child { display: flex; gap: 14px; }
+.picker-head .link-btn { font-size: 12px; color: var(--link); }
+.picker-head .link-btn:hover { color: var(--strong); }
+.link-btn:disabled { opacity: .4; cursor: default; }
+.picker { list-style: none; margin: 0; padding: 4px; height: min(46vh, 420px); overflow-y: auto; background: #171a21; border-radius: 3px; }
+.picker label { display: flex; align-items: center; gap: 8px; padding: 5px 6px; border-radius: 2px; color: #b8bcbf; cursor: pointer; }
+.picker label:hover { background: #2f3540; color: var(--strong); }
+.picker label.on { color: var(--strong); }
+.picker img { width: 16px; height: 16px; flex: none; }
+.picker .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.picker em { font-style: normal; color: var(--faint); font-size: 11px; white-space: nowrap; }
+.picker-empty { padding: 16px 8px; color: var(--muted); }
+.list-editor .dialog-actions { margin-top: 4px; }
+.btn-blue:disabled, .btn-blue:disabled:hover { opacity: .5; cursor: default; filter: none; }
+.btn-ghost.btn-danger { border-color: #6b3a3a; color: #ff9b9b; margin-right: auto; }
+.btn-ghost.btn-danger:hover { background: #4a2626; color: #fff; }
+
 .main { display: flex; flex-direction: column; min-width: 0; }
 .hero { position: relative; min-height: clamp(220px, 34vw, 380px); display: flex; align-items: flex-end; padding: 24px; background: linear-gradient(120deg, #2a475e, #171a21); overflow: hidden; }
 .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }

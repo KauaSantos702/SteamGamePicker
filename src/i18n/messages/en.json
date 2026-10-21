@@ -66,7 +66,11 @@
     "noMatch": "No game in your library matches this filter.",
     "noMatchInCollection": "No game in the \"{name}\" collection matches this filter.",
     "lastTwoWeeks": "{time} in the last 2 weeks",
-    "store": "View in store"
+    "store": "View in store",
+    "createList": "+ Create a pick list",
+    "editList": "Edit list",
+    "groupLists": "Your lists",
+    "groupSteam": "Steam collections"
   },
   "limits": {
     "any": "any playtime",
@@ -96,6 +100,27 @@
       "noCollections": "No collections found. Make sure the file is the {file} from the right folder.",
       "unreadable": "Couldn't read the file."
     }
+  },
+  "lists": {
+    "createTitle": "New pick list",
+    "editTitle": "Edit pick list",
+    "intro": "Check the games you want in the pick. The list is saved only in this browser.",
+    "name": "List name",
+    "defaultName": "My list {n}",
+    "search": "Search games",
+    "onlySelected": "Show checked only",
+    "selected": {
+      "one": "{count} game checked",
+      "other": "{count} games checked"
+    },
+    "selectVisible": "Check all shown",
+    "clearVisible": "Uncheck all shown",
+    "noResults": "No games found.",
+    "emptyHint": "Check at least one game.",
+    "save": "Save list",
+    "cancel": "Cancel",
+    "delete": "Delete list",
+    "confirmDelete": "Click again to delete"
   },
   "history": {
     "title": "Picked games",
@@ -130,11 +155,11 @@
       },
       "browser": {
         "q": "What is saved in my browser?",
-        "a": "Your language choice, imported collections and picked games list are kept in the browser's local storage (<code>localStorage</code>), only on your computer. The collections file is read in the browser and never sent to the server. The only cookie is the session cookie."
+        "a": "Your language choice, the pick lists you created, imported collections and picked games list are kept in the browser's local storage (<code>localStorage</code>), only on your computer. The collections file is read in the browser and never sent to the server. The only cookie is the session cookie."
       },
       "delete": {
         "q": "How do I delete my data?",
-        "a": "Click <b>Sign out</b> in the top bar: the session ends and the picked games list is deleted. Imported collections are removed with the <b>{removeButton}</b> button in the import dialog. To clear everything else, delete this site's data in your browser settings. Since signing in gives the site no permissions on your account, there's nothing to revoke on Steam."
+        "a": "Click <b>Sign out</b> in the top bar: the session ends and the picked games list is deleted. Imported collections are removed with the <b>{removeButton}</b> button in the import dialog, and each pick list with the <b>{deleteListButton}</b> button while editing it. To clear everything else, delete this site's data in your browser settings. Since signing in gives the site no permissions on your account, there's nothing to revoke on Steam."
       },
       "public": {
         "q": "Why does my profile need to be public?",

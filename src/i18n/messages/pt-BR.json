@@ -66,7 +66,11 @@
     "noMatch": "Nenhum jogo da sua biblioteca passa nesse filtro.",
     "noMatchInCollection": "Nenhum jogo da coleção \"{name}\" passa nesse filtro.",
     "lastTwoWeeks": "{time} nas últimas 2 semanas",
-    "store": "Ver na loja"
+    "store": "Ver na loja",
+    "createList": "+ Criar lista de sorteio",
+    "editList": "Editar lista",
+    "groupLists": "Suas listas",
+    "groupSteam": "Coleções da Steam"
   },
   "limits": {
     "any": "qualquer tempo de jogo",
@@ -96,6 +100,27 @@
       "noCollections": "Nenhuma coleção encontrada. Confira se o arquivo é o {file} da pasta certa.",
       "unreadable": "Não foi possível ler o arquivo."
     }
+  },
+  "lists": {
+    "createTitle": "Nova lista de sorteio",
+    "editTitle": "Editar lista de sorteio",
+    "intro": "Marque os jogos que entram no sorteio. A lista fica salva só neste navegador.",
+    "name": "Nome da lista",
+    "defaultName": "Minha lista {n}",
+    "search": "Pesquisar jogos",
+    "onlySelected": "Mostrar só os marcados",
+    "selected": {
+      "one": "{count} jogo marcado",
+      "other": "{count} jogos marcados"
+    },
+    "selectVisible": "Marcar todos os exibidos",
+    "clearVisible": "Desmarcar os exibidos",
+    "noResults": "Nenhum jogo encontrado.",
+    "emptyHint": "Marque pelo menos um jogo.",
+    "save": "Salvar lista",
+    "cancel": "Cancelar",
+    "delete": "Excluir lista",
+    "confirmDelete": "Clique de novo para excluir"
   },
   "history": {
     "title": "Jogos sorteados",
@@ -130,11 +155,11 @@
       },
       "browser": {
         "q": "O que fica salvo no meu navegador?",
-        "a": "O idioma escolhido, as coleções importadas e a lista de jogos sorteados ficam no armazenamento local do navegador (<code>localStorage</code>), só no seu computador. O arquivo de coleções é lido no próprio navegador e nunca é enviado ao servidor. O único cookie é o da sessão."
+        "a": "O idioma escolhido, as listas de sorteio que você criou, as coleções importadas e a lista de jogos sorteados ficam no armazenamento local do navegador (<code>localStorage</code>), só no seu computador. O arquivo de coleções é lido no próprio navegador e nunca é enviado ao servidor. O único cookie é o da sessão."
       },
       "delete": {
         "q": "Como apago os meus dados?",
-        "a": "Clique em <b>Sair</b> na barra superior: a sessão é encerrada e a lista de jogos sorteados é apagada. As coleções importadas são removidas pelo botão <b>{removeButton}</b>, na janela de importação. Para limpar todo o resto, apague os dados deste site nas configurações do navegador. Como o login não dá ao site nenhuma permissão na sua conta, não há nada para revogar na Steam."
+        "a": "Clique em <b>Sair</b> na barra superior: a sessão é encerrada e a lista de jogos sorteados é apagada. As coleções importadas são removidas pelo botão <b>{removeButton}</b>, na janela de importação, e cada lista de sorteio pelo botão <b>{deleteListButton}</b>, ao editá-la. Para limpar todo o resto, apague os dados deste site nas configurações do navegador. Como o login não dá ao site nenhuma permissão na sua conta, não há nada para revogar na Steam."
       },
       "public": {
         "q": "Por que o meu perfil precisa estar público?",
