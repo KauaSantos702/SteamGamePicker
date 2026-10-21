@@ -12,14 +12,17 @@
     "library": "Biblioteca",
     "drawn": "Juegos sorteados",
     "logout": "Cerrar sesión",
-    "language": "Idioma"
+    "language": "Idioma",
+    "faq": "Dudas",
+    "github": "Código en GitHub"
   },
   "login": {
     "title": "¿No sabes qué jugar?",
     "text": "Inicia sesión con tu cuenta de Steam. Leemos tu biblioteca y sorteamos un juego para ti.",
     "failed": "No se pudo confirmar el inicio de sesión con Steam. Inténtalo de nuevo.",
     "button": "Iniciar sesión con Steam",
-    "note": "El inicio de sesión se hace en el sitio de Steam. Tu contraseña nunca pasa por aquí; solo recibimos tu SteamID público."
+    "note": "El inicio de sesión se hace en el sitio de Steam. Tu contraseña nunca pasa por aquí; solo recibimos tu SteamID público.",
+    "faqLink": "¿Dudas sobre privacidad?"
   },
   "library": {
     "loading": "Cargando tu biblioteca…",
@@ -63,7 +66,11 @@
     "noMatch": "Ningún juego de tu biblioteca cumple este filtro.",
     "noMatchInCollection": "Ningún juego de la colección \"{name}\" cumple este filtro.",
     "lastTwoWeeks": "{time} en las últimas 2 semanas",
-    "store": "Ver en la tienda"
+    "store": "Ver en la tienda",
+    "createList": "+ Crear lista de sorteo",
+    "editList": "Editar lista",
+    "groupLists": "Tus listas",
+    "groupSteam": "Colecciones de Steam"
   },
   "limits": {
     "any": "cualquier tiempo de juego",
@@ -94,6 +101,27 @@
       "unreadable": "No se pudo leer el archivo."
     }
   },
+  "lists": {
+    "createTitle": "Nueva lista de sorteo",
+    "editTitle": "Editar lista de sorteo",
+    "intro": "Marca los juegos que entran en el sorteo. La lista se guarda solo en este navegador.",
+    "name": "Nombre de la lista",
+    "defaultName": "Mi lista {n}",
+    "search": "Buscar juegos",
+    "onlySelected": "Mostrar solo los marcados",
+    "selected": {
+      "one": "{count} juego marcado",
+      "other": "{count} juegos marcados"
+    },
+    "selectVisible": "Marcar todos los mostrados",
+    "clearVisible": "Desmarcar los mostrados",
+    "noResults": "No se encontraron juegos.",
+    "emptyHint": "Marca al menos un juego.",
+    "save": "Guardar lista",
+    "cancel": "Cancelar",
+    "delete": "Eliminar lista",
+    "confirmDelete": "Haz clic de nuevo para eliminar"
+  },
   "history": {
     "title": "Juegos sorteados",
     "summary": {
@@ -108,6 +136,56 @@
     "onDate": "{date} a las {time}",
     "from": "de {source}",
     "store": "Tienda"
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "intro": "Cómo funciona el sitio y qué pasa con tus datos.",
+    "items": {
+      "login": {
+        "q": "¿Qué recibe el sitio cuando inicio sesión con Steam?",
+        "a": "El inicio de sesión usa el OpenID de Steam: escribes tu usuario, contraseña y código de Steam Guard en el sitio de Steam, no aquí. Steam solo le devuelve al sitio tu <b>SteamID</b>, un número público que identifica tu perfil. El sitio no recibe tu contraseña, correo, teléfono, saldo ni forma de pago, y no obtiene ningún permiso sobre tu cuenta."
+      },
+      "read": {
+        "q": "¿Qué datos de mi cuenta lee el sitio?",
+        "a": "Con el SteamID, el servidor consulta la Steam Web API y obtiene solo lo que ya es público en tu perfil: nombre, avatar y enlace del perfil, y la lista de juegos con tiempo de juego y fecha de la última sesión. El sitio no lee amigos, mensajes, inventario ni historial de compras, y no puede cambiar nada en tu cuenta."
+      },
+      "stored": {
+        "q": "¿Estos datos se guardan o se envían a algún lugar?",
+        "a": "No hay base de datos. El SteamID se guarda en una cookie de sesión firmada, que el JavaScript de la página no puede leer, y dura hasta que cierres sesión o 30 días como máximo. La lista de juegos se guarda en la memoria del servidor hasta 1 hora, solo para no consultar a Steam en cada clic. Nada se vende ni se comparte con terceros, y el sitio no usa anuncios, rastreadores ni herramientas de análisis: el servidor solo habla con Steam. Las portadas y los iconos de los juegos se cargan directamente desde el servidor de imágenes de Steam. El sitio está alojado en Firebase (Google), que, como cualquier alojamiento, puede guardar registros técnicos de acceso, como la dirección IP y la hora."
+      },
+      "browser": {
+        "q": "¿Qué se guarda en mi navegador?",
+        "a": "El idioma elegido, las listas de sorteo que creaste, las colecciones importadas y la lista de juegos sorteados se guardan en el almacenamiento local del navegador (<code>localStorage</code>), solo en tu computadora. El archivo de colecciones se lee en el navegador y nunca se envía al servidor. La única cookie es la de la sesión."
+      },
+      "delete": {
+        "q": "¿Cómo borro mis datos?",
+        "a": "Haz clic en <b>Cerrar sesión</b> en la barra superior: la sesión termina y la lista de juegos sorteados se borra. Las colecciones importadas se eliminan con el botón <b>{removeButton}</b> en la ventana de importación, y cada lista de sorteo con el botón <b>{deleteListButton}</b> al editarla. Para borrar todo lo demás, elimina los datos de este sitio en la configuración del navegador. Como el inicio de sesión no le da al sitio ningún permiso sobre tu cuenta, no hay nada que revocar en Steam."
+      },
+      "public": {
+        "q": "¿Por qué mi perfil tiene que ser público?",
+        "a": "Steam solo entrega la lista de juegos por la API cuando los <b>Detalles de los juegos</b> son públicos. Abre la <privacy>configuración de privacidad</privacy> de Steam (<b>Perfil → Editar perfil → Configuración de privacidad</b>) y cambia esa opción a <b>Público</b>."
+      },
+      "missing": {
+        "q": "¿Por qué no aparecen algunos juegos?",
+        "a": "Los juegos de la Familia Steam (préstamo familiar) no aparecen porque la API pública no los incluye. Los juegos comprados hace poco pueden tardar hasta 1 hora en aparecer, que es el tiempo que la lista se guarda en el servidor."
+      },
+      "collections": {
+        "q": "¿Por qué tengo que subir un archivo para usar mis colecciones?",
+        "a": "Steam no ofrece las colecciones por la API, pero el cliente guarda una copia en tu computadora. La ventana de importación muestra dónde está ese archivo. Se lee en el navegador y no sale de tu computadora. Las colecciones dinámicas no se importan porque el archivo solo guarda el filtro, no la lista de juegos."
+      },
+      "play": {
+        "q": "El botón Jugar no hace nada. ¿Qué hago?",
+        "a": "El botón abre un enlace <code>steam://</code>, que necesita el cliente de Steam instalado en la computadora. La primera vez, el navegador pregunta si puede abrir Steam; solo tienes que permitirlo. En el móvil o sin el cliente instalado, usa <b>{storeButton}</b>."
+      },
+      "official": {
+        "q": "¿Es un sitio oficial de Steam? ¿Cuesta algo?",
+        "a": "No es oficial: es un proyecto independiente, sin afiliación con Valve Corporation, que usa la Steam Web API según sus términos de uso. Y es gratis."
+      },
+      "contribute": {
+        "q": "¿El código es abierto? ¿Cómo puedo contribuir?",
+        "a": "Sí. El código está en <repo>GitHub</repo> con licencia MIT, y allí puedes comprobar todo lo que describe esta página. Los errores e ideas se pueden enviar como <issues>issues</issues>, y los pull requests son bienvenidos, incluidas traducciones a nuevos idiomas."
+      }
+    }
   },
   "format": {
     "neverPlayed": "Nunca jugado",

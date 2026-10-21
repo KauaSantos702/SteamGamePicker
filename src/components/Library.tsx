@@ -4,9 +4,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { OwnedGame } from "@/lib/steam";
 import { isBuiltIn, type Collection, type ImportResult } from "@/lib/collections";
 import CollectionsImport from "@/components/CollectionsImport";
+import ListEditor from "@/components/ListEditor";
+import { isCustomList, loadLists, newListId, saveLists } from "@/lib/lists";
 import { addToHistory } from "@/lib/history";
 import { HOUR_LIMITS, matchesLimit, type HourLimit } from "@/lib/limits";
-import { STEAM_CDN as CDN } from "@/lib/format";
+import { STEAM_CDN as CDN, gameIconUrl } from "@/lib/format";
 import { useI18n } from "@/i18n/I18nProvider";
 
 type Status = "loading" | "ready" | "private" | "error";
@@ -42,7 +44,9 @@ export default function Library({ steamId }: { steamId: string }) {
   const [limit, setLimit] = useState<HourLimit>("any");
   const [collections, setCollections] = useState<Collection[]>([]);
   const [collectionId, setCollectionId] = useState(ALL);
+  const [lists, setLists] = useState<Collection[]>([]);
   const [importOpen, setImportOpen] = useState(false);
+  const [editor, setEditor] = useState<{ list: Collection | null } | null>(null);
   const [lastImport, setLastImport] = useState<ImportResult | null>(null);
   const [current, setCurrent] = useState<OwnedGame | null>(null);
   const [rolling, setRolling] = useState(false);
@@ -68,6 +72,7 @@ export default function Library({ steamId }: { steamId: string }) {
   useEffect(() => {
     load();
     setCollections(loadCollections(steamId));
+    setLists(loadLists(steamId));
   }, [load, steamId]);
 
   const collectionName = useCallback(
@@ -80,16 +85,18 @@ export default function Library({ steamId }: { steamId: string }) {
     () => [...collections].sort((a, b) => format.compare(collectionName(a), collectionName(b))),
     [collections, collectionName, format],
   );
+  const sortedLists = useMemo(() => [...lists].sort((a, b) => format.compare(a.name, b.name)), [lists, format]);
+  const allCollections = useMemo(() => [...lists, ...collections], [lists, collections]);
 
   const owned = useMemo(() => new Set(games.map((g) => g.appid)), [games]);
 
   // Only count games the user still owns; collections can list removed or family-shared apps.
   const collectionCounts = useMemo(
-    () => new Map(collections.map((c) => [c.id, c.appids.filter((id) => owned.has(id)).length])),
-    [collections, owned],
+    () => new Map(allCollections.map((c) => [c.id, c.appids.filter((id) => owned.has(id)).length])),
+    [allCollections, owned],
   );
 
-  const selected = collections.find((c) => c.id === collectionId);
+  const selected = allCollections.find((c) => c.id === collectionId);
   const selectedName = selected ? collectionName(selected) : t("library.allGames");
 
   const pool = useMemo(() => {
@@ -102,15 +109,32 @@ export default function Library({ steamId }: { steamId: string }) {
   function handleImported(result: ImportResult) {
     setCollections(result.collections);
     saveCollections(steamId, result.collections);
-    setCollectionId(ALL);
+    setCollectionId((id) => (isCustomList(id) ? id : ALL));
     setLastImport(result);
   }
 
   function clearCollections() {
     setCollections([]);
     saveCollections(steamId, []);
-    setCollectionId(ALL);
+    setCollectionId((id) => (isCustomList(id) ? id : ALL));
     setLastImport(null);
+  }
+
+  function saveList(name: string, appids: number[]) {
+    const id = editor?.list?.id ?? newListId();
+    const next = [...lists.filter((l) => l.id !== id), { id, name, appids }];
+    setLists(next);
+    saveLists(steamId, next);
+    setCollectionId(id);
+  }
+
+  function deleteList() {
+    const id = editor?.list?.id;
+    if (!id) return;
+    const next = lists.filter((l) => l.id !== id);
+    setLists(next);
+    saveLists(steamId, next);
+    setCollectionId((c) => (c === id ? ALL : c));
   }
 
   const visible = useMemo(() => {
@@ -191,7 +215,7 @@ export default function Library({ steamId }: { steamId: string }) {
   return (
     <div className="body">
       <aside className="side">
-        {collections.length > 0 && (
+        {allCollections.length > 0 && (
           <select
             id="colecao"
             className="collection-select"
@@ -200,11 +224,24 @@ export default function Library({ steamId }: { steamId: string }) {
             onChange={(e) => setCollectionId(e.target.value)}
           >
             <option value={ALL}>{t("library.optionWithCount", { name: t("library.allGames"), count: games.length })}</option>
-            {sortedCollections.map((c) => (
-              <option key={c.id} value={c.id}>
-                {t("library.optionWithCount", { name: collectionName(c), count: collectionCounts.get(c.id) ?? 0 })}
-              </option>
-            ))}
+            {sortedLists.length > 0 && (
+              <optgroup label={t("library.groupLists")}>
+                {sortedLists.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {t("library.optionWithCount", { name: c.name, count: collectionCounts.get(c.id) ?? 0 })}
+                  </option>
+                ))}
+              </optgroup>
+            )}
+            {sortedCollections.length > 0 && (
+              <optgroup label={t("library.groupSteam")}>
+                {sortedCollections.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {t("library.optionWithCount", { name: collectionName(c), count: collectionCounts.get(c.id) ?? 0 })}
+                  </option>
+                ))}
+              </optgroup>
+            )}
           </select>
         )}
         <input
@@ -215,6 +252,16 @@ export default function Library({ steamId }: { steamId: string }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
+        <div className="list-actions">
+          <button type="button" onClick={() => setEditor({ list: null })}>
+            {t("library.createList")}
+          </button>
+          {selected && isCustomList(selected.id) && (
+            <button type="button" onClick={() => setEditor({ list: selected })}>
+              {t("library.editList")}
+            </button>
+          )}
+        </div>
         <div className="cat">
           {t(limit === "any" ? "library.listHeading" : "library.listHeadingFiltered", {
             name: selectedName,
@@ -228,7 +275,7 @@ export default function Library({ steamId }: { steamId: string }) {
                 {g.img_icon_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={`https://media.steampowered.com/steamcommunity/public/images/apps/${g.appid}/${g.img_icon_url}.jpg`}
+                    src={gameIconUrl(g.appid, g.img_icon_url)}
                     alt=""
                     width={16}
                     height={16}
@@ -261,6 +308,15 @@ export default function Library({ steamId }: { steamId: string }) {
           onClose={() => setImportOpen(false)}
           onImported={handleImported}
           onClear={clearCollections}
+        />
+        <ListEditor
+          open={editor !== null}
+          games={sortedGames}
+          list={editor?.list ?? null}
+          defaultName={t("lists.defaultName", { n: lists.length + 1 })}
+          onClose={() => setEditor(null)}
+          onSave={saveList}
+          onDelete={deleteList}
         />
       </aside>
 
