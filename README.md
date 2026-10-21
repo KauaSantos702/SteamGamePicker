@@ -31,6 +31,7 @@ Ter uma ferramenta pronta, em vez de colocar os jogos numa roleta manualmente, a
 - **Jogos sorteados:** aba com o histórico dos sorteios da sessão, apagado ao sair da conta.
 - **Botão Jogar:** abre o jogo direto no cliente Steam (`steam://run/<appid>`).
 - **Idiomas:** português, inglês e espanhol, com seletor na barra superior.
+- **Dúvidas:** página `/duvidas` com perguntas frequentes sobre login, privacidade e uso, acessível sem login.
 
 ### Como usar
 
@@ -52,7 +53,7 @@ Ter uma ferramenta pronta, em vez de colocar os jogos numa roleta manualmente, a
 ### Como funciona
 
 ```
-Navegador ──► Firebase Hosting (CDN) ── páginas estáticas: /  e  /sorteados
+Navegador ──► Firebase Hosting (CDN) ── páginas estáticas: /, /sorteados e /duvidas
     │
     └──► /api/*  ──► Cloud Function (Next.js) ──► Steam (OpenID + Web API)
 ```
@@ -86,12 +87,14 @@ src/
   app/
     page.tsx              página da biblioteca
     sorteados/page.tsx    página de jogos sorteados
+    duvidas/page.tsx      perguntas frequentes
     api/                  rotas de servidor (login, sessão, jogos)
     globals.css           todo o visual
   components/
     App.tsx               verifica a sessão e escolhe a tela
     Library.tsx           lista, filtros e sorteio
     History.tsx           jogos sorteados
+    Faq.tsx               perguntas frequentes
     CollectionsImport.tsx importação de coleções
     LanguageSwitcher.tsx  seletor de idioma com bandeiras
     TopBar.tsx, LogoutButton.tsx
@@ -255,6 +258,7 @@ The screenshots show the interface in Portuguese; switch to English with the fla
 - **Picked games:** a tab with the session's pick history, cleared when you sign out.
 - **Play button:** launches the game straight in the Steam client (`steam://run/<appid>`).
 - **Languages:** Portuguese, English and Spanish, with a switcher in the top bar.
+- **FAQ:** a `/duvidas` page answering common questions about sign-in, privacy and usage, open without signing in.
 
 ### How to use
 
@@ -276,7 +280,7 @@ The screenshots show the interface in Portuguese; switch to English with the fla
 ### How it works
 
 ```
-Browser ──► Firebase Hosting (CDN) ── static pages: /  and  /sorteados
+Browser ──► Firebase Hosting (CDN) ── static pages: /, /sorteados and /duvidas
     │
     └──► /api/*  ──► Cloud Function (Next.js) ──► Steam (OpenID + Web API)
 ```
@@ -310,12 +314,14 @@ src/
   app/
     page.tsx              library page
     sorteados/page.tsx    picked games page
+    duvidas/page.tsx      FAQ page
     api/                  server routes (sign-in, session, games)
     globals.css           all styling
   components/
     App.tsx               checks the session and picks the screen
     Library.tsx           list, filters and pick
     History.tsx           picked games
+    Faq.tsx               FAQ
     CollectionsImport.tsx collections import
     LanguageSwitcher.tsx  language switcher with flags
     TopBar.tsx, LogoutButton.tsx

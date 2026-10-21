@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { PlayerSummary } from "@/lib/steam";
 import { useI18n } from "@/i18n/I18nProvider";
 import TopBar from "@/components/TopBar";
 import Library from "@/components/Library";
 import History from "@/components/History";
+import Faq from "@/components/Faq";
 
-type Tab = "biblioteca" | "sorteados";
+type Tab = "biblioteca" | "sorteados" | "duvidas";
 type Me = { steamId: string; profile: PlayerSummary | null };
 type State = { status: "loading" } | { status: "guest"; loginFailed: boolean } | { status: "error" } | ({ status: "in" } & Me);
 
@@ -24,7 +26,7 @@ export default function App({ tab }: { tab: Tab }) {
       .then(async (res) => {
         if (cancelled) return;
         if (res.status === 401) {
-          if (tab !== "biblioteca") return router.replace("/");
+          if (tab === "sorteados") return router.replace("/");
           const loginFailed = new URLSearchParams(window.location.search).get("erro") === "login";
           return setState({ status: "guest", loginFailed });
         }
@@ -39,7 +41,18 @@ export default function App({ tab }: { tab: Tab }) {
 
   return (
     <div className="app">
-      <TopBar profile={state.status === "in" ? state.profile : undefined} active={state.status === "in" ? tab : undefined} />
+      <TopBar profile={state.status === "in" ? state.profile : undefined} signedIn={state.status === "in"} active={tab} />
+      {tab === "duvidas" ? <Faq /> : <Screen tab={tab} state={state} />}
+      <footer className="footer">{t("app.footer")}</footer>
+    </div>
+  );
+}
+
+// The FAQ is readable without signing in; the other tabs depend on the session.
+function Screen({ tab, state }: { tab: Tab; state: State }) {
+  const { t } = useI18n();
+  return (
+    <>
       {state.status === "loading" && <main className="state">{t("app.loading")}</main>}
       {state.status === "error" && (
         <main className="state">
@@ -53,8 +66,7 @@ export default function App({ tab }: { tab: Tab }) {
       {state.status === "guest" && <Login failed={state.loginFailed} />}
       {state.status === "in" &&
         (tab === "biblioteca" ? <Library steamId={state.steamId} /> : <History steamId={state.steamId} />)}
-      <footer className="footer">{t("app.footer")}</footer>
-    </div>
+    </>
   );
 }
 
@@ -69,7 +81,9 @@ function Login({ failed }: { failed: boolean }) {
         <a className="btn-steam" href="/api/auth/steam">
           {t("login.button")}
         </a>
-        <small>{t("login.note")}</small>
+        <small>
+          {t("login.note")} <Link href="/duvidas">{t("login.faqLink")}</Link>
+        </small>
       </div>
     </main>
   );

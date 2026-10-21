@@ -2,31 +2,43 @@
 
 import Link from "next/link";
 import type { PlayerSummary } from "@/lib/steam";
+import { REPO_URL } from "@/lib/format";
 import { useI18n } from "@/i18n/I18nProvider";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LogoutButton from "@/components/LogoutButton";
 
-type Tab = "biblioteca" | "sorteados";
+type Tab = "biblioteca" | "sorteados" | "duvidas";
 
-export default function TopBar({ profile, active }: { profile?: PlayerSummary | null; active?: Tab }) {
+type Props = { profile?: PlayerSummary | null; signedIn: boolean; active: Tab };
+
+export default function TopBar({ profile, signedIn, active }: Props) {
   const { t } = useI18n();
+  const tab = (id: Tab) => ({ className: active === id ? "on" : "", "aria-current": active === id ? ("page" as const) : undefined });
   return (
     <header className="topbar">
-      <div className="logo">
+      <Link href="/" className="logo">
         <i aria-hidden="true" />
         {t("app.name")}
-      </div>
-      {active && (
-        <nav className="topnav">
-          <Link href="/" className={active === "biblioteca" ? "on" : ""} aria-current={active === "biblioteca" ? "page" : undefined}>
-            {t("nav.library")}
-          </Link>
-          <Link href="/sorteados" className={active === "sorteados" ? "on" : ""} aria-current={active === "sorteados" ? "page" : undefined}>
-            {t("nav.drawn")}
-          </Link>
-        </nav>
-      )}
+      </Link>
+      <nav className="topnav">
+        {signedIn && (
+          <>
+            <Link href="/" {...tab("biblioteca")}>
+              {t("nav.library")}
+            </Link>
+            <Link href="/sorteados" {...tab("sorteados")}>
+              {t("nav.drawn")}
+            </Link>
+          </>
+        )}
+        <Link href="/duvidas" {...tab("duvidas")}>
+          {t("nav.faq")}
+        </Link>
+      </nav>
       <div className="top-right">
+        <a className="gh-link" href={REPO_URL} target="_blank" rel="noreferrer" aria-label={t("nav.github")} title={t("nav.github")}>
+          <GitHubMark />
+        </a>
         <LanguageSwitcher />
         {profile && (
           <div className="user">
@@ -42,5 +54,14 @@ export default function TopBar({ profile, active }: { profile?: PlayerSummary | 
         )}
       </div>
     </header>
+  );
+}
+
+/** GitHub's "mark" logo (Octicons, MIT). */
+function GitHubMark() {
+  return (
+    <svg viewBox="0 0 16 16" width={20} height={20} aria-hidden="true" fill="currentColor">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+    </svg>
   );
 }

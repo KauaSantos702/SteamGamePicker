@@ -29,6 +29,7 @@ button, input, select { font: inherit; }
 /* top bar */
 .topbar { background: var(--top); display: flex; align-items: center; gap: 26px; padding: 12px 18px; flex-wrap: wrap; }
 .logo { color: var(--strong); font-weight: 700; letter-spacing: .14em; font-size: 15px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; }
+.logo:hover { color: var(--strong); }
 .logo i { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #66c0f4, #1a4f78); }
 .topnav { display: flex; gap: 20px; font-size: 14px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
 .topnav a { color: #b8b6b4; padding-bottom: 3px; }
@@ -36,6 +37,8 @@ button, input, select { font: inherit; }
 .topnav .on, .topnav .on:hover { color: var(--blue); box-shadow: 0 3px 0 var(--blue); }
 .top-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
 .user { display: flex; align-items: center; gap: 8px; }
+.gh-link { display: flex; padding: 4px; border-radius: 2px; color: var(--muted); }
+.gh-link:hover { background: var(--field); color: var(--strong); }
 .lang { position: relative; }
 .lang-btn { display: flex; align-items: center; gap: 4px; background: none; border: 0; padding: 4px; border-radius: 2px; color: var(--muted); cursor: pointer; font-size: 10px; }
 .lang-btn:hover, .lang-btn[aria-expanded="true"] { background: var(--field); color: var(--strong); }
@@ -144,6 +147,22 @@ button, input, select { font: inherit; }
 .history-info p { margin: 0; color: var(--muted); font-size: 12px; }
 .history-actions { display: flex; align-items: center; gap: 14px; }
 .history-actions .btn-play { padding: 8px 14px; font-size: 13px; }
+
+/* faq */
+.faq { flex: 1; width: min(820px, 100%); margin: 0 auto; padding: 28px 18px 48px; }
+.faq h1 { margin: 0 0 4px; color: var(--strong); font-size: 26px; font-weight: 700; }
+.faq-intro { margin: 0 0 18px; color: var(--muted); }
+.faq-list { display: flex; flex-direction: column; gap: 4px; }
+.faq-item { background: rgba(0, 0, 0, .2); border-radius: 2px; }
+.faq-item[open] { background: linear-gradient(90deg, rgba(26, 159, 255, .12), rgba(0, 0, 0, .2) 60%); }
+.faq-item summary { list-style: none; display: flex; align-items: center; gap: 10px; padding: 14px 16px; color: var(--strong); font-size: 15px; font-weight: 700; cursor: pointer; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before { content: "▸"; color: var(--blue); flex: none; transition: transform .15s; }
+.faq-item[open] summary::before { transform: rotate(90deg); }
+.faq-item summary:hover { color: var(--link); }
+.faq-item p { margin: 0; padding: 0 16px 16px 36px; font-size: 14px; line-height: 1.6; }
+.faq-item strong { color: #dcdedf; }
+.faq-item code { font-family: Consolas, "Courier New", monospace; font-size: 12px; background: #171a21; padding: 1px 5px; border-radius: 2px; }
 
 .footer { background: var(--top); color: var(--faint); font-size: 11px; padding: 10px 18px; }
 

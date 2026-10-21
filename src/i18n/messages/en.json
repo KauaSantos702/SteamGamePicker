@@ -12,14 +12,17 @@
     "library": "Library",
     "drawn": "Picked games",
     "logout": "Sign out",
-    "language": "Language"
+    "language": "Language",
+    "faq": "FAQ",
+    "github": "Code on GitHub"
   },
   "login": {
     "title": "Don't know what to play?",
     "text": "Sign in with your Steam account. We read your library and pick a game for you.",
     "failed": "Couldn't confirm your Steam sign-in. Please try again.",
     "button": "Sign in with Steam",
-    "note": "Sign-in happens on the Steam website. Your password never passes through here; we only receive your public SteamID."
+    "note": "Sign-in happens on the Steam website. Your password never passes through here; we only receive your public SteamID.",
+    "faqLink": "Privacy questions?"
   },
   "library": {
     "loading": "Loading your library…",
@@ -108,6 +111,56 @@
     "onDate": "{date} at {time}",
     "from": "from {source}",
     "store": "Store"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "intro": "How the site works and what happens to your data.",
+    "items": {
+      "login": {
+        "q": "What does the site receive when I sign in with Steam?",
+        "a": "Sign-in uses Steam's OpenID: you type your username, password and Steam Guard code on Steam's own site, not here. Steam only sends back your <b>SteamID</b>, a public number that identifies your profile. The site never receives your password, email, phone number, wallet balance or payment details, and it gets no permissions over your account."
+      },
+      "read": {
+        "q": "Which account data does the site read?",
+        "a": "With your SteamID, the server queries the Steam Web API for what is already public on your profile: name, avatar and profile link, plus your game list with playtime and last session date. The site doesn't read friends, messages, inventory or purchase history, and it can't change anything on your account."
+      },
+      "stored": {
+        "q": "Is this data stored or sent anywhere?",
+        "a": "There is no database. Your SteamID lives in a signed session cookie that the page's JavaScript can't read, and it lasts until you sign out or for 30 days at most. Your game list is kept in the server's memory for up to 1 hour, just to avoid asking Steam on every click. Nothing is sold or shared with third parties, and the site uses no ads, trackers or analytics: the server only talks to Steam. Game covers and icons load straight from Steam's image servers. The site is hosted on Firebase (Google), which, like any host, may keep technical access logs such as IP address and time."
+      },
+      "browser": {
+        "q": "What is saved in my browser?",
+        "a": "Your language choice, imported collections and picked games list are kept in the browser's local storage (<code>localStorage</code>), only on your computer. The collections file is read in the browser and never sent to the server. The only cookie is the session cookie."
+      },
+      "delete": {
+        "q": "How do I delete my data?",
+        "a": "Click <b>Sign out</b> in the top bar: the session ends and the picked games list is deleted. Imported collections are removed with the <b>{removeButton}</b> button in the import dialog. To clear everything else, delete this site's data in your browser settings. Since signing in gives the site no permissions on your account, there's nothing to revoke on Steam."
+      },
+      "public": {
+        "q": "Why does my profile need to be public?",
+        "a": "Steam only returns your game list through the API when <b>Game details</b> is public. Open Steam's <privacy>privacy settings</privacy> (<b>Profile → Edit Profile → Privacy Settings</b>) and set that option to <b>Public</b>."
+      },
+      "missing": {
+        "q": "Why are some games missing?",
+        "a": "Steam Family (family sharing) games don't show up because the public API doesn't list them. Recently bought games can take up to 1 hour to appear, which is how long the list is kept on the server."
+      },
+      "collections": {
+        "q": "Why do I need to upload a file to use my collections?",
+        "a": "Steam doesn't expose collections through the API, but the client keeps a copy of them on your computer. The import dialog shows where that file is. It's read in the browser and never leaves your computer. Dynamic collections aren't imported because the file only stores the filter, not the game list."
+      },
+      "play": {
+        "q": "The Play button does nothing. What should I do?",
+        "a": "The button opens a <code>steam://</code> link, which needs the Steam client installed on your computer. The first time, your browser asks whether it may open Steam; just allow it. On a phone or without the client, use <b>{storeButton}</b>."
+      },
+      "official": {
+        "q": "Is this an official Steam site? Does it cost anything?",
+        "a": "It isn't official: it's an independent project, not affiliated with Valve Corporation, using the Steam Web API under its terms of use. And it's free."
+      },
+      "contribute": {
+        "q": "Is the code open source? How can I contribute?",
+        "a": "Yes. The code is on <repo>GitHub</repo> under the MIT license, where you can check everything this page describes. Report bugs and ideas as <issues>issues</issues>, and pull requests are welcome, including translations into new languages."
+      }
+    }
   },
   "format": {
     "neverPlayed": "Never played",
